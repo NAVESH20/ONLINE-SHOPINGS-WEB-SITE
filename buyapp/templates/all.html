@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>all</title>
+    <style>
+        body{
+            background-color: rgb(187, 252, 249);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            width: 550px;
+            height: 500px;
+        }
+        .contanter{
+            width: 90%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 50px;
+            margin-top: 10px;
+            padding: 20px;
+            border: 10px;
+            
+        }
+        .search_box{
+            height: 35px;
+            width: 450px;
+            position: absolute;
+            right: 45%;
+            border-radius: 20px 20px 20px 20px;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            bottom: 89%;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        } 
+        .na{
+            display: flex;
+            background: black;
+            width: 250%;
+            margin: -8px;
+            height: 80px;
+            outline: rgb(247, 6, 6);
+        }
+        .item{
+            background: #ffff;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transform: translate 0.3s ease;
+            background: rgba(194, 194, 194, 0.822);
+        }
+        .item:hover{
+            transform: translate(+5px);
+            box-shadow: rgba(107, 105, 105, 0.61);
+        }
+        .item img{
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .con p{
+            margin: 0;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        .con label{
+            font-weight: bold;
+            font-size: 19px;
+            color: rgb(51, 51, 51);
+            font-family: serif;
+            margin: 4px 0;
+        }
+        .con label:first-child{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 24px;
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <nav class="na">
+        <h1 style="color: #fafafa; position: absolute; left: 50px;">EaseBuy</h1>
+        <form action="search" method="get">
+            <input type="text" name="name" placeholder="search" class="search_box"><br>
+        </form>
+{% if user.is_authenticated %}
+    <h2 style="color: #fafafa; position: absolute; right: 30%;">Welcome {{user.username}}</h2>
+    <button style="background: rgba(125, 240, 58, 0.829); height: 40px; position: absolute; right: 290px; bottom: 90%; width: 80px; border-radius: 6px 6px 6px 6px;"><a href="/logout" >LogOut</a></button>
+{% else %}python
+    <button style="position: absolute; right: 220px; height: 40px; width: 100px; border-radius: 6px 6px 6px 6px; background: rgba(125, 240, 58, 0.829); bottom: 90%; "><a href="/login">Login</a></button>
+    <button style="background:rgba(125, 240, 58, 0.829); height: 40px; width: 120px; border-radius: 6px 6px 6px 6px;position: absolute; right: 25%; bottom: 90%;"><a href="/register">Register</a></button>
+{% endif %}
+       <button style=" background: rgba(125, 240, 58, 0.829); height: 40px; position: absolute; bottom: 90%; right: 120px; width: 120px; border-radius: 4px 4px 4px 4px; justify-content: center; align-items: center;"><a href="/addimage" style=" height: 81px; text-align: center;">add to product</a></button>
+        <button style=" background: rgba(125, 240, 58, 0.829); height: 40px; position: absolute; bottom: 90%; right: 30px; width: 80px; border-radius: 4px 4px 4px 4px; justify-content: center; align-items: center;"><a href="/update" style=" height: 81px; text-align: center;">admin</a></button>
+    </nav>  
+
+    <div class="contanter">
+        {% for i in all %}
+        <div class="item">
+            <img src="{{i.image.url}}" alt=" " height="100px" width="200px">
+            <div class="con">
+               <p><label>NAME:{{i.name}}</label><br>
+                <label>PRICE:{{i.price}}</label><br>
+                <label>QUANTITY:{{i.Qty}}</label></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

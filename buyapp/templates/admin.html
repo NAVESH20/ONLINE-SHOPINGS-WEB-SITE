@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin page</title>
+    <style>
+        body{
+            height: 100%;
+            width: 200%;
+            background-color: rgb(187, 214, 252);
+            font-family: Arial, Helvetica, sans-serif;
+            justify-content: center;
+            align-items: center;
+        }
+         .no{
+            background-color: #afafaf;
+            display: grid;
+            height: 200px;
+            width: 350px;
+            border-radius: 20px 20px 20px 20px;
+            position: absolute;
+            left: 10%;
+            bottom: 40%;
+            padding: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+        .pro{
+            display: grid;
+            border-radius: 40px 40px 40px 40px;
+        }
+
+        .mo{
+            background-color: #afafaf;
+            height: 100px;
+            width: 350px;
+            border-radius: 20px 20px 20px 20px;
+            position: absolute;
+            right: 10%;
+            bottom: 50%;
+            padding: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+        input{
+            border-radius: 40px 40px 40px 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+{% if msg %}
+<h1>{{msg}}</h1>
+{% endif %}
+
+<button><a href="/addimage"> add to product</a></button>
+    <div class="no">
+    <h1>update_product</h1>
+    <form action="update" method="post">
+        {% csrf_token %}
+        <div class="pro">
+        <input type="text" name="name"  placeholder="name"><br>
+        <input type="number" name="price" placeholder="price" ><br>
+        <input type="number" name="Qty" placeholder="Qty" ><br>
+        <input type="submit" style="background-color: black; color: #ffff;">
+        </div>
+    </form>
+    </div>
+
+    <div class="mo">
+    <h1>Product deleted</h1>
+    <form action="deleted" method="post">
+        {% csrf_token %}
+        <input type="text" name="name"  placeholder="name">
+        <input type="submit" style="background-color: black; color: #ffff;">
+        <button style="border-radius: 40px 40px 40px 40px; background: black; color: #ffff; "><a href="/all">back</a></button>
+    </form>
+    </div>
+</body>
+</html>
